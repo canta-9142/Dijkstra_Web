@@ -1,0 +1,28 @@
+---
+import Layout from "../layouts/Layout.astro"
+import Dijkstra from "../components/Dijkstra.astro"
+---
+
+<Layout>
+    <div class="flex flex-wrap w-full h-full items-center justify-center">
+        <div class="pb-16">
+            <Dijkstra />
+        </div>
+        <div class="flex flex-col px-16 items-left justify-start">
+            <h1 class="font-bold text-3xl">
+                遊び方
+            </h1>
+            <ul class="pl-8">
+                <li>迷路生成：押すと迷路を生成します。</li>
+                <li>スタートとゴールの配置：迷路生成が完了した状態で左クリックすしてスタート→ゴールの順で配置できます。</li>
+                <li>A*を使用：チェックした状態で探索を開始するとA*アルゴリズムを使えます。</li>
+                <li>リセット：迷路の形状はそのままにスタートとゴールの位置を配置し直すことができます。</li>
+            </ul>
+            <style>
+                ul {
+                    list-style-type: square;
+                }
+            </style>
+        </div>
+    </div>
+</Layout>

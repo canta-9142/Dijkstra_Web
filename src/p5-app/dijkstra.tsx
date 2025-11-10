@@ -8,6 +8,7 @@ const { width, height } = P5_CONFIG;
 
 const P5Sketch: React.FC<{ containerId?: string }> = ({ containerId }) => {
     const containerRef = useRef<HTMLDivElement>(null);
+    const p5InstanceRef = useRef<p5 | null>(null);
 
     useEffect(() => {
         const sketch = (p: p5): void => {
@@ -105,13 +106,13 @@ const P5Sketch: React.FC<{ containerId?: string }> = ({ containerId }) => {
                     grid[Math.floor(between/cols)][between%cols].state = Utils.Node.States.Undiscovered;
                 }
 
-                const neighbors: Utils.Node[] = []; {// 上下左右の候補を配列にまとめる
-                    if (nRow >= 2) neighbors.push(grid[nRow - 2][nCol]);
-                    if (nRow <= rows - 3) neighbors.push(grid[nRow + 2][nCol]);
-                    if (nCol >= 2) neighbors.push(grid[nRow][nCol - 2]);
-                    if (nCol <= cols - 3) neighbors.push(grid[nRow][nCol + 2]);
-                }
-                for (let i = neighbors.length - 1; i > 0; i--) {
+                const neighbors: Utils.Node[] = [];// 上下左右の候補を配列にまとめる
+                if (nRow >= 2) neighbors.push(grid[nRow - 2][nCol]);
+                if (nRow <= rows - 3) neighbors.push(grid[nRow + 2][nCol]);
+                if (nCol >= 2) neighbors.push(grid[nRow][nCol - 2]);
+                if (nCol <= cols - 3) neighbors.push(grid[nRow][nCol + 2]);
+
+                for (let i = neighbors.length - 1; i > 0; i--) { // シャッフル(Fisher-Yates shuffle)
                     const j = Math.floor(Math.random() * (i + 1));
                     [neighbors[i],neighbors[j]] = [neighbors[j], neighbors[i]];
                 }
@@ -121,9 +122,9 @@ const P5Sketch: React.FC<{ containerId?: string }> = ({ containerId }) => {
             }
             function pStep(cur: Utils.Node, next: Utils.Node): void {
                 if(next.prev === null) {
-                    next.prev = cur;
                     rHeap.push(next);
                 }
+                next.prev = cur; // なぜかわからんがこいつをif文の外側に出すと迷路がいい感じになる
             }
 
             function stepSearch(): boolean {
@@ -280,35 +281,37 @@ const P5Sketch: React.FC<{ containerId?: string }> = ({ containerId }) => {
             };
         };
 
-
-        let p5Instance: p5;
         const container = containerId ? document.getElementById(containerId) : containerRef.current;
-        if(!container) return;
+        if (!container) return;
 
-        p5Instance = new p5(sketch, container);
+        const p5Instance = new p5(sketch, container);
+        p5InstanceRef.current = p5Instance;
         (window as any).P5_INSTANCE = p5Instance;
 
-        const generateBtn = document.getElementById("btn-generate");
-        const resetBtn = document.getElementById("btn-reset");
-        const checkbox = document.getElementById("astar-checkbox") as HTMLInputElement;
-
-        generateBtn?.addEventListener("click", () => {
-            (p5Instance as any).beginGenerating();
-        });
-        resetBtn?.addEventListener("click", () => {
-            (p5Instance as any).beginPlacing();
-        });
-        checkbox?.addEventListener("change", (e) => {
+        const onGenerate = () => (p5Instance as any).beginGenerating();
+        const onReset = () => (p5Instance as any).beginPlacing();
+        const onChange = (e: Event) => {
             const useAStar = (e.target as HTMLInputElement).checked;
             window.P5_CONFIG = {
                 width: window.P5_CONFIG!.width,
                 height: window.P5_CONFIG!.height,
                 useAStar: useAStar,
-            }
-        })
+            };
+        };
+
+        const generateBtn = document.getElementById("btn-generate");
+        const resetBtn = document.getElementById("btn-reset");
+        const checkbox = document.getElementById("astar-checkbox");
+
+        generateBtn?.addEventListener("click", onGenerate);
+        resetBtn?.addEventListener("click", onReset);
+        checkbox?.addEventListener("change", onChange);
 
         return () => {
-            p5Instance?.remove();
+            generateBtn?.removeEventListener("click", onGenerate);
+            resetBtn?.removeEventListener("click", onReset);
+            checkbox?.removeEventListener("change", onChange);
+            p5Instance.remove();
             delete (window as any).P5_INSTANCE;
         };
     }, [containerId]);
