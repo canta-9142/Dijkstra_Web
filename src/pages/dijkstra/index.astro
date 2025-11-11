@@ -1,0 +1,44 @@
+---
+import Layout from "../../layouts/Layout.astro"
+import Demo from "../../p5-app/demo.tsx"
+---
+
+<Layout>
+    <main class="flex grow">
+        <div class="flex flex-wrap w-full h-full px-4">
+            <div class="container mx-auto w-1/2 px-4 min-w-64 bg-white flex-col self-center items-center justify-items-center">
+                <h1 class=" text-4xl font-bold">
+                    ダイクストラ法で最短経路探索
+                </h1>
+                <br>
+                <h2 class="px-10 font-light text-gray-900 text-sm">
+                    ランダムに生成される迷路を勝手に解いてもらうだけのサイトです。
+                </h2>
+                <div class="w-full flex flex-wrap items-center justify-center py-6 gap-6">
+                    <a href="/dijkstra/play" target="_self" class="box-border border border-black px-4 py-2 text-white font-semibold rounded ease-in-out transition-all bg-blue-400 hover:px-5 hover:py-3 hover:bg-blue-300 shadow-xl">
+                        プレイしてみる
+                    </a>
+                    <a href="/dijkstra/about" target="_self" class="box-border border border-black px-4 py-2 text-neutral-700 font-semibold rounded ease-in-out transition-all bg-white hover:bg-neutral-200 shadow-xl">
+                        仕組みを見てみる
+                    </a>
+                </div>
+            </div>
+            <div class="flex flex-col container mx-auto w-1/2 min-w-64 bg-white items-center justify-items-center p-8">
+                <div id="demo-container" />
+                <br>
+                <button id="btn-search" class="px-4 py-2 bg-sky-600 hover:bg-sky-800 text-white font-semibold rounded shadow">
+                    押してみて！
+                </button>
+            </div>
+        </div>
+        <Demo client:only="react" containerId="demo-container" />
+    </main>
+</Layout>
+
+<script>
+    window.P5_CONFIG = {
+        width: 211,
+        height: 211,
+        useAStar: false,
+    };
+</script>
