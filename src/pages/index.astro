@@ -5,8 +5,8 @@ import Demo from "../p5-app/demo.tsx"
 
 <Layout>
     <main class="flex grow">
-        <div class="flex flex-nowrap w-full h-full px-4">
-            <div class="w-1/2 px-4 bg-white flex-col self-center items-center justify-items-center">
+        <div class="flex flex-wrap w-full h-full px-4">
+            <div class="container mx-auto w-1/2 px-4 min-w-64 bg-white flex-col self-center items-center justify-items-center">
                 <h1 class=" text-4xl font-bold">
                     ダイクストラ法で最短経路探索
                 </h1>
@@ -23,7 +23,7 @@ import Demo from "../p5-app/demo.tsx"
                     </a>
                 </div>
             </div>
-            <div class="flex flex-col w-1/2 bg-white items-center justify-items-center p-8">
+            <div class="flex flex-col container mx-auto w-1/2 min-w-64 bg-white items-center justify-items-center p-8">
                 <div id="demo-container" />
                 <br>
                 <button id="btn-search" class="px-4 py-2 bg-sky-600 hover:bg-sky-800 text-white font-semibold rounded shadow">
