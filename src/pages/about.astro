@@ -32,24 +32,37 @@ import Layout from "../layouts/Layout.astro";
                 ホームページのデモ部分とPlayページの迷路部分はAstroのアイランドアーキテクチャを用いて、p5.jsで書かれたコードをReact経由でCSR(Client-Side Rendering)として組み込んでいます。<br>
                 迷路生成や最短経路探索は全てブラウザ上で行われるため、まあまあCPUを食います。ご了承ください。<br>
             </p>
+            <h2 class="text-2xl ml-1 font-bold">Processing</h2>
+            <p class="text-sm mb-4 ml-4 pr-8 dark:prose-invert">
+                障害物手書きモード、早送り、斜め移動などを備えたより自由度の高いProcessing(Java)版です。
+                下記からダウンロードください。
+                <div class="flex flex-wrap self-center gap-4">
+                    <a href="https://github.com/canta-9142/Dijkstra" target="_blank" class="flex items-center justify-center bg-neutral-100 p-4 rounded shadow-xl ease-in-out transition-all hover:p-6 hover:bg-neutral-200">
+                        <span class="font-semibold text-black text-sm">ソースコード</span>
+                    </a>
+                    <a href="https://processing.org/download" target="_blank" class="flex items-center justify-center bg-neutral-100 p-4 rounded shadow-xl ease-in-out transition-all hover:p-6 hover:bg-neutral-200">
+                        <span class="font-semibold text-black text-sm">Processing</span>
+                    </a>
+                </div>
+            </p>
             <h2 class="text-2xl ml-1 font-bold">リンク</h2>
             <p class="text-sm mb-4 ml-4 pr-8 dark:prose-invert">
                 本サイトのGitHubリポジトリおよびAstroとTailwind CSS、p5.jsの公式サイトへのリンクです。別ページに遷移します。
             </p>
             <div class="flex flex-wrap self-center gap-4">
-                <a href="https://github.com/canta-9142/Dijkstra_web" target="_blank" class="flex items-center justify-center bg-white p-4 rounded shadow-xl">
+                <a href="https://github.com/canta-9142/Dijkstra_web" target="_blank" class="flex items-center justify-center bg-neutral-100 p-4 rounded shadow-xl ease-in-out transition-all hover:p-6 hover:bg-neutral-200">
                     <img src="../../public/github_icon.png" alt="GitHub" width="48" height="48"/>
                     <span class="font-semibold text-black text-xs ml-2">GitHub</span>
                 </a>
-                <a href="https://astro.build" target="_blank" class="flex items-center justify-center bg-white p-4 rounded shadow-xl">
+                <a href="https://astro.build" target="_blank" class="flex items-center justify-center bg-neutral-100 p-4 rounded shadow-xl ease-in-out transition-all hover:p-6 hover:bg-neutral-200">
                     <img src="../../public/astro_icon.png" alt="Astro" width="48" height="48"/>
                     <span class="font-semibold text-black text-xs ml-2">Astro</span>
                 </a>
-                <a href="https://tailwindcss.com" target="_blank" class="flex items-center justify-center bg-white p-4 rounded shadow-xl">
-                    <img src="../../public/tailwind_icon.png" alt="Astro" width="48" height="48"/>
+                <a href="https://tailwindcss.com" target="_blank" class="flex items-center justify-center bg-neutral-100 p-4 rounded shadow-xl ease-in-out transition-all hover:p-6 hover:bg-neutral-200">
+                    <img src="../../public/tailwind_icon.png" alt="Tailwind CSS" width="48" height="48"/>
                     <span class="font-semibold text-black text-xs ml-2">Tailwind CSS</span>
                 </a>
-                <a href="https://p5js.org" target="_blank" class="flex items-center justify-center bg-white p-4 rounded shadow-xl">
+                <a href="https://p5js.org" target="_blank" class="flex items-center justify-center bg-neutral-100 p-4 rounded shadow-xl ease-in-out transition-all hover:p-6 hover:bg-neutral-200">
                     <img src="../../public/p5js_icon.png" alt="p5.js" width="48" height="48"/>
                     <span class="font-semibold text-black text-xs ml-2">p5.js</span>
                 </a>
