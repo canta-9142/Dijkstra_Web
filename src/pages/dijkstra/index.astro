@@ -15,10 +15,10 @@ import Demo from "../../p5-app/demo.tsx"
                     ランダムに生成される迷路を勝手に解いてもらうだけのサイトです。
                 </h2>
                 <div class="w-full flex flex-wrap items-center justify-center py-6 gap-6">
-                    <a href="/dijkstra/play" target="_self" class="box-border border border-black px-4 py-2 text-white font-semibold rounded ease-in-out transition-all duration-300 bg-blue-400 hover:px-5 hover:py-3 hover:bg-blue-300 shadow-xl">
+                    <a href={`${Astro.site}dijkstra/play`} target="_self" class="box-border border border-black px-4 py-2 text-white font-semibold rounded ease-in-out transition-all duration-300 bg-blue-400 hover:px-5 hover:py-3 hover:bg-blue-300 shadow-xl">
                         プレイしてみる
                     </a>
-                    <a href="/dijkstra/about" target="_self" class="box-border border border-black px-4 py-2 text-neutral-700 font-semibold rounded ease-in-out transition-all duration-300 bg-white hover:bg-neutral-200 shadow-xl">
+                    <a href={`${Astro.site}dijkstra/about`} target="_self" class="box-border border border-black px-4 py-2 text-neutral-700 font-semibold rounded ease-in-out transition-all duration-300 bg-white hover:bg-neutral-200 shadow-xl">
                         仕組みを見てみる
                     </a>
                 </div>
